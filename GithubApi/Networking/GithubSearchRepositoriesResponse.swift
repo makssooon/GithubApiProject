@@ -22,4 +22,9 @@ struct GithubSearchRepositoriesResponse: Decodable {
         self.repositoriesCount = try container.decode(Int.self, forKey: .repositoriesCount)
         self.items = try container.decode([GithubRepositoryModel].self, forKey: .items)
     }
+    
+    init() {
+        repositoriesCount = 0
+        items = []
+    }
 }

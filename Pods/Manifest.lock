@@ -14,17 +14,33 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - PromiseKit (6.5.2):
+    - PromiseKit/CorePromise (= 6.5.2)
+    - PromiseKit/Foundation (= 6.5.2)
+    - PromiseKit/UIKit (= 6.5.2)
+  - PromiseKit/CorePromise (6.5.2)
+  - PromiseKit/Foundation (6.5.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.5.2):
+    - PromiseKit/CorePromise
+  - ReSwift (4.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - PromiseKit (~> 6.0)
+  - ReSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - PromiseKit
+    - ReSwift
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  PromiseKit: 27c1601bfb73405871b805bcb8cf7e55c4dad3db
+  ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: da4ecda886801c3faad074e35227467c8b7ecd92
+PODFILE CHECKSUM: 483a36d9399d3c6b0e2ccaceb4aecdfa9b8c192e
 
 COCOAPODS: 1.5.3
