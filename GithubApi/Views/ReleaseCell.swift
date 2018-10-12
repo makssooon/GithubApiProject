@@ -30,15 +30,23 @@ class ReleaseCell: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let releaseNameTextInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0),
-                                                            child: releaseNameTextNode)
-        let authorNameTextInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20.0, left: 10.0, bottom: 10.0, right: 10.0),
-                                                       child: authorNameTextNode)
-        let releaseBodyTextInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 40.0, left: 10.0, bottom: 10.0, right: 10.0),
+        let releaseNameRelativeSpec = ASRelativeLayoutSpec(horizontalPosition: .center,
+                                                           verticalPosition: .start,
+                                                           sizingOption: .init(rawValue: 0),
+                                                           child: releaseNameTextNode)
+        let releaseNameInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: CGFloat.infinity),
+                                                     child: releaseNameRelativeSpec)
+        let authorNameRelativeSpec = ASRelativeLayoutSpec(horizontalPosition: .end,
+                                                           verticalPosition: .start,
+                                                           sizingOption: .init(rawValue: 0),
+                                                           child: authorNameTextNode)
+        let authorNameInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8.0, left: CGFloat.infinity, bottom: 8.0, right: 8.0),
+                                                       child: authorNameRelativeSpec)
+        let releaseBodyInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0),
                                                         child: releaseBodyTextNode)
         let verticalStackSpec = ASStackLayoutSpec()
         verticalStackSpec.direction = .vertical
-        verticalStackSpec.children = [releaseNameTextInsetSpec, authorNameTextInsetSpec, releaseBodyTextInsetSpec]
+        verticalStackSpec.children = [releaseNameInsetSpec, authorNameInsetSpec, releaseBodyInsetSpec]
         
         return verticalStackSpec
     }

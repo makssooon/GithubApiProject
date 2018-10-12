@@ -26,13 +26,22 @@ class RepositoryCell: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let repositoryNameTextInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0),
-                                                            child: repositoryNameTextNode)
-        let ownerNameTextInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20.0, left: 10.0, bottom: 10.0, right: 10.0),
+        let repositoryNameRelativeSpec = ASRelativeLayoutSpec(horizontalPosition: .start,
+                                                              verticalPosition: .start,
+                                                              sizingOption: .init(rawValue: 0),
+                                                              child: repositoryNameTextNode)
+        let repositoryNameInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: CGFloat.infinity),
+                                                        child: repositoryNameRelativeSpec)
+        
+        let ownerNameRelativeSpec = ASRelativeLayoutSpec(horizontalPosition: .end,
+                                                         verticalPosition: .end,
+                                                         sizingOption: .minimumSize,
                                                          child: ownerNameTextNode)
+        let ownerNameInsetSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8.0, left: CGFloat.infinity, bottom: 8.0, right: 8.0),
+                                                       child: ownerNameRelativeSpec)
         let verticalStackSpec = ASStackLayoutSpec()
         verticalStackSpec.direction = .vertical
-        verticalStackSpec.children = [repositoryNameTextInsetSpec, ownerNameTextInsetSpec]
+        verticalStackSpec.children = [repositoryNameInsetSpec, ownerNameInsetSpec]
         
         return verticalStackSpec
     }
