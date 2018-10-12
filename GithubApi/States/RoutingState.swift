@@ -11,7 +11,7 @@ import ReSwift
 struct RoutingState: StateType {
     var navigationState: RoutingDestination
     
-    init(navigationState: RoutingDestination = .RepositoriesTableViewController) {
+    init(navigationState: RoutingDestination = .RepositoriesTableController) {
         self.navigationState = navigationState
     }
     

@@ -9,8 +9,11 @@
 import ReSwift
 
 enum RoutingDestination: String {
-    case RepositoriesTableViewController = "RepositoriesTableViewController"
-    case ReleasesTableViewController = "ReleasesTableViewController"
+//    case RepositoriesTableViewController = "RepositoriesTableViewController"
+//    case ReleasesTableViewController = "ReleasesTableViewController"
+    
+    case RepositoriesTableController = "RepositoriesTableController"
+    case ReleasesTableController = "ReleasesTableController"
 }
 
 final class AppRouter {
@@ -27,9 +30,17 @@ final class AppRouter {
         }
     }
     
-    private func pushViewController(identifier: String, animated: Bool) {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
-        navigationController.pushViewController(viewController, animated: animated)
+    private func pushViewController(identifier: RoutingDestination, animated: Bool) {
+        navigationController.pushViewController(viewController(for: identifier), animated: animated)
+    }
+    
+    private func viewController(for identifier: RoutingDestination) -> UIViewController {
+        switch identifier {
+        case .RepositoriesTableController:
+            return RepositoriesTableController(repositories: [])
+        case .ReleasesTableController:
+            return ReleasesTableController(releases: [])
+        }
     }
     
 }
@@ -41,7 +52,7 @@ extension AppRouter: StoreSubscriber {
             return
         }
         let shouldAnimate = navigationController.topViewController != nil
-        pushViewController(identifier: state.navigationState.rawValue, animated: shouldAnimate)
+        pushViewController(identifier: state.navigationState, animated: shouldAnimate)
     }
     
 }
