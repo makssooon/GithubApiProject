@@ -32,15 +32,17 @@ class RepositoriesTableController: ASViewController<ASTableNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.definesPresentationContext = true
         restorationIdentifier = "RepositoriesTableController"
         activityIndicatorController = ActivityIndicatorController(viewController: self)
         searchController = UISearchController(searchResultsController: nil)
         searchController?.dimsBackgroundDuringPresentation = false
+        searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchResultsUpdater = self
         searchController?.searchBar.sizeToFit()
-        searchController?.searchBar.searchBarStyle = .minimal
+        searchController?.searchBar.searchBarStyle = .prominent
         searchController?.searchBar.delegate = self
-        view.addSubview(searchController!.searchBar)
+        tableNode.view.tableHeaderView = searchController!.searchBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +107,10 @@ extension RepositoriesTableController: UISearchBarDelegate {
         } else {
             store.dispatch(fetchRepositories(for: searchBar.text!))
         }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        store.dispatch(SetRepositoriesAction(repositories: []))
     }
     
 }
