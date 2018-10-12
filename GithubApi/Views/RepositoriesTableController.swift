@@ -35,6 +35,7 @@ class RepositoriesTableController: ASViewController<ASTableNode> {
         restorationIdentifier = "RepositoriesTableController"
         activityIndicatorController = ActivityIndicatorController(viewController: self)
         searchController = UISearchController(searchResultsController: nil)
+        searchController?.dimsBackgroundDuringPresentation = false
         searchController?.searchResultsUpdater = self
         searchController?.searchBar.sizeToFit()
         searchController?.searchBar.searchBarStyle = .minimal
