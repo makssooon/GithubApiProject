@@ -21,6 +21,7 @@ class ReleasesTableController: ASViewController<ASTableNode> {
         super.init(node: tableNode)
         
         self.tableNode.dataSource = self
+        self.tableNode.delegate = self
         self.releases = releases
     }
     
@@ -67,6 +68,14 @@ extension ReleasesTableController: ASTableDataSource {
         return {
             return cell
         }
+    }
+    
+}
+
+extension ReleasesTableController: ASTableDelegate {
+    func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        
+        return false
     }
     
 }
